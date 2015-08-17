@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animation Tests</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/global.css">
+
+</head>
+<body id="body">
+	
+	<div class="animation-wrapper">
+		<img id="logo" src="img/logo.svg">
+		<img id="left-img1" src="img/left_foot.svg">
+		<img id="right-img" src="img/right_foot.svg">
+		<img id="left-img2" src="img/left_foot.svg">
+		<h1 id="welcome1">Welcome To the </h1></h1><h1 id="welcome2">Museum of Science</h1><h1 id="welcome3"> Boston</h1>
+	</div>
+	
+	<div class="container">
+		<div class="smallBox">A</div>
+		<div class="smallBox">B</div>
+		<div class="smallBox">C</div>
+		<div class="smallBox">D</div>
+		<div class="smallBox">E</div>
+		<div class="smallBox">F</div>
+	</div>
+
+	<!-- JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TimelineMax.min.js"></script>
+	<script type="text/javascript" src="js/animate.js"></script>
+	<script type="text/javascript">
+
+		var left = document.getElementById("left-img1");
+		var right = document.getElementById("right-img");
+		var left2 = document.getElementById("left-img2");
+		var body = document.getElementById("body");
+		var welcome1 = document.getElementById("welcome1");
+		var welcome2 = document.getElementById("welcome2");
+		var welcome3 = document.getElementById("welcome3");
+		var shake_time = 0.06;
+
+		var percentToPixel_x = function(_percent){
+			return $(".animation-wrapper").outerWidth()/100 * parseFloat(_percent);
+		}
+		var percentToPixel_y = function(_percent){
+			return $(".animation-wrapper").outerHeight()/100 * parseFloat(_percent);
+		}
+
+		var tl = new TimelineMax();
+		//T-Rex Footprints
+		tl
+			.to(left, 0.3, {opacity: 1, scale: 2, ease:Circ.easeIn}, "1st-stomp")
+			.to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "-=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "+=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)})
+
+			.to(right, 0.3, {opacity: 1, scale: 2, ease:Circ.easeIn}, "2nd-stomp", "+=0")
+			.to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "-=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "+=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)})
+
+			.to(left2, 0.3, {opacity: 1, scale: 2, ease:Circ.easeIn}, "3rd-stomp", "+=2")
+			.to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "-=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {top: "+=" + percentToPixel_y(11.11), left: "-=" + percentToPixel_x(6.94)}).to(body, shake_time, {left: "+=" + percentToPixel_x(6.94)})
+
+			.to([left, right, left2], 0.5, {opacity: 0}, "+=2")
+			if($("#body").width() <= 720){
+				tl.to(welcome2, 0.5, {opacity: 1})
+				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(55), left: "-=" + percentToPixel_x(38.1)}, "+=2");
+				
+			}
+			else {
+				tl.to([welcome1, welcome2, welcome3], 0.5, {opacity: 1})
+				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(4), left: "-=" + percentToPixel_x(38.1)}, "+=2");
+				
+			}
+			tl
+			.to([welcome1, welcome3], 1, {opacity: 0}, "-=0.8")
+			.to(document.getElementById("logo"), 0.5, {opacity: 1, rotate: 360}, "-=0.5")
+
+			.to(body, 0.1, {overflowY: "visible"})
+
+	</script>
+</body>
+</html>

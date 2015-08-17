@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+	<title>Animation Tests</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/space.css">
+
+</head>
+<body id="body">
+	
+	<div class="animation-wrapper" id="background">
+		<img id="logo" src="img/logo.svg">
+
+		<h1 id="welcome1">Welcome To the </h1></h1><h1 id="welcome2">Museum of Science</h1><h1 id="welcome3"> Boston</h1>
+
+	</div>
+	<div class="container">
+		<div class="smallBox">A</div>
+		<div class="smallBox">B</div>
+		<div class="smallBox">C</div>
+		<div class="smallBox">D</div>
+		<div class="smallBox">E</div>
+		<div class="smallBox">F</div>
+	</div>
+
+	<!-- JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TimelineMax.min.js"></script>
+	<script type="text/javascript" src="js/animate.js"></script>
+	<script type="text/javascript">
+
+		var welcome1 = document.getElementById("welcome1");
+		var welcome2 = document.getElementById("welcome2");
+		var welcome3 = document.getElementById("welcome3");
+		var wrapper = document.getElementById("background");
+
+		function getRandomIntInclusive(min, max) {
+  			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		var percentToPixel_x = function(_percent){
+			return $(".animation-wrapper").outerWidth()/100 * parseFloat(_percent)
+		}
+		var percentToPixel_y = function(_percent){
+			return $(".animation-wrapper").outerHeight()/100 * parseFloat(_percent)
+		}
+		var percentoScale = function(_percent){
+			return $("#body").width() * parseFloat(_percent) * 0.000694; 
+		}
+
+		var tl = new TimelineMax();
+		
+			
+			var num_stars = 100;
+			var duration = 0.6;
+			var stars = [];
+			var centerX = $(".animation-wrapper").width() / 2;
+			var centerY = $(".animation-wrapper").height() / 2;
+			var star, angle, delay;
+			var isA = true;
+			var isB = true;
+
+			while(--num_stars > -1){
+				star = $("<div class='stars'></div>").appendTo(wrapper);
+				stars.push(star);
+				angle = Math.random() * Math.PI * 2;
+				delay = Math.random() * duration;
+				tl.set(star, {display: "block"}, delay);
+				TweenLite.set(star, {width: 10, height: 10, backgroundColor: "white", y: centerY, x: centerX, z: 0.1, position: "absolute", borderRadius: 100, opacity:0});
+				TweenLite.to(star, 0.2, {opacity:1});
+
+				
+
+				var region = getRandomIntInclusive(1, 8);
+
+				if(region == 1){
+					x_val = getRandomIntInclusive(-40, -20);
+					y_val = getRandomIntInclusive(-40, -20);
+				} else if(region == 2){
+					x_val = getRandomIntInclusive(-20, 1440);
+					y_val = getRandomIntInclusive(-20, -40);
+				} else if (region == 3){
+					x_val = getRandomIntInclusive(1440, 1460);
+					y_val = getRandomIntInclusive(-40, -20);
+				} else if (region == 4){
+					x_val = getRandomIntInclusive(1440, 1460);
+					y_val = getRandomIntInclusive(-20, 500);
+				} else if(region == 5){
+					x_val = getRandomIntInclusive(1440, 1460);
+					y_val = getRandomIntInclusive(500, 520);
+				} else if (region == 6){
+					x_val = getRandomIntInclusive(-20, 1440);
+					y_val = getRandomIntInclusive(500, 520);
+				} else if(region == 7){
+					x_val = getRandomIntInclusive(-40, -20);
+					y_val = getRandomIntInclusive(500, 520);
+				} else if(region == 8){
+					x_val = getRandomIntInclusive(-40, -20);
+					y_val = getRandomIntInclusive(-20, 500)
+				}
+
+				
+
+				tl.add( new TweenMax(star, duration, {
+			        y: y_val,
+			        x: x_val,
+			        scale:1.5,
+			        ease:Cubic.easeIn,
+			        repeat:"repeats",
+			        repeatDelay:Math.random() * duration}),
+			             delay);
+			}
+
+			//Text
+			if($("#body").width() <= 720){
+				tl.to(welcome2, 0.5, {opacity: 1}, 12)
+				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(55), left: "-=" + percentToPixel_x(38.1)}, "+=2");
+				
+			}
+			else {
+				tl.to([welcome1, welcome2, welcome3], 0.5, {opacity: 1}, 12)
+				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(4), left: "-=" + percentToPixel_x(38.1)}, "+=2");
+				
+			}
+			tl
+			.to([welcome1, welcome3], 1, {opacity: 0}, "-=0.8")
+			.to(document.getElementById("logo"), 0.5, {opacity: 1, rotate: 360}, "-=0.5")
+
+			.to(background, 0.5, {backgroundColor: "white"}, "change")
+			.to(welcome2, 0.5, {color: "black"}, "change")
+
+			.to(body, 0.1, {overflowY: "visible"});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+#body {
+  position: absolute;
+  overflow: hidden;
+  margin: 0; }
+  #body .container {
+    width: 99%;
+    margin-left: 21.8%;
+    margin-right: 21.8%;
+    padding: 1%;
+    max-width: 57%; }
+    #body .container .smallBox {
+      margin: 10px;
+      padding: 0;
+      width: 250px;
+      float: left;
+      background-color: red;
+      height: 250px; }
+  #body .animation-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 500px;
+    background-color: black;
+    overflow: hidden; }
+    #body .animation-wrapper #logo {
+      width: 10.4%;
+      position: absolute;
+      left: 9.02%;
+      top: 1.33%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome1 {
+      position: absolute;
+      left: 24.3%;
+      top: 16.6%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome2 {
+      position: absolute;
+      left: 41.6%;
+      top: 16.6%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome3 {
+      position: absolute;
+      left: 62.8%;
+      top: 16.6%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome1, #body .animation-wrapper #welcome2, #body .animation-wrapper #welcome3 {
+      color: white; }
+    #body .animation-wrapper .stars {
+      width: 10px;
+      border-radius: 100px;
+      background-color: red; }
+
+@media (max-width: 720px) {
+  #welcome1, #welcome2, #welcome3 {
+    font-size: 1em; } }
+
+/*# sourceMappingURL=math.css.map */

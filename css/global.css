@@ -1,0 +1,66 @@
+#body {
+  position: absolute;
+  overflow: hidden; }
+  #body .container {
+    width: 99%;
+    margin-left: 18%;
+    margin-left: 19%;
+    padding: 1%;
+    max-width: 57%; }
+    #body .container .smallBox {
+      margin: 10px;
+      padding: 0;
+      width: 249px;
+      float: left;
+      background-color: red;
+      height: 250px; }
+  #body .animation-wrapper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 500px; }
+    #body .animation-wrapper #left-img1 {
+      left: .694%;
+      top: 11.11%;
+      position: absolute;
+      opacity: 0;
+      width: 20%; }
+    #body .animation-wrapper #right-img {
+      position: absolute;
+      opacity: 0;
+      width: 20%;
+      left: 34.72%;
+      top: 20%; }
+    #body .animation-wrapper #left-img2 {
+      left: 72.91%;
+      top: 5.55%;
+      position: absolute;
+      opacity: 0;
+      width: 20%; }
+    #body .animation-wrapper #logo {
+      width: 10.4%;
+      position: absolute;
+      left: 9.02%;
+      top: 1.33%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome1 {
+      position: absolute;
+      left: 24.3%;
+      top: 16.6%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome2 {
+      position: absolute;
+      left: 41.6%;
+      top: 16.6%;
+      opacity: 0; }
+    #body .animation-wrapper #welcome3 {
+      position: absolute;
+      left: 62.8%;
+      top: 16.6%;
+      opacity: 0; }
+
+@media (max-width: 720px) {
+  #welcome1, #welcome2, #welcome3 {
+    font-size: 1em; } }
+
+/*# sourceMappingURL=global.css.map */
