@@ -11,7 +11,7 @@
 	<div class="animation-wrapper" id="background">
 		<img id="logo" src="img/logo.svg">
 
-		<h1 id="welcome1">Welcome To the </h1></h1><h1 id="welcome2">Museum of Science</h1><h1 id="welcome3"> Boston</h1>
+		<h1 id="welcome1">Welcome To the </h1><h1 id="welcome2">Museum of Science</h1><h1 id="welcome3"> Boston</h1>
 
 		<img src="img/planets/01.png" id="p1" class="planet">
 		<img src="img/planets/02.png" id="p2" class="planet">
@@ -38,11 +38,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TimelineMax.min.js"></script>
-	<script type="text/javascript" src="js/animate.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" src="js/animateStars.js"></script>
+	<script type="text/javascript" src="js/animateText.js"></script>
+	<!--<script type="text/javascript" src="js/animatePlanets.js"></script>-->
 
+	<script type="text/javascript">
+		/*
+		
+			Variable Declarations used in the animation
+
+		 */
 		var p1 = document.getElementById("p1");
 		var p2 = document.getElementById("p2");
 		var p3 = document.getElementById("p3");
@@ -54,10 +61,21 @@
 		var p9 = document.getElementById("p9");
 		var p10 = document.getElementById("p10");
 
-		var welcome1 = document.getElementById("welcome1")
-		var welcome2 = document.getElementById("welcome2")
-		var welcome3 = document.getElementById("welcome3")
+		var welcome1 = document.getElementById("welcome1");
+		var welcome2 = document.getElementById("welcome2");
+		var welcome3 = document.getElementById("welcome3");
 
+		var wrapper = document.getElementById("background");
+		var planets = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10];
+		var stars = [];
+
+
+
+		/*
+		
+			Functions used to make animation dynamic.  getRandomIntInclusive() used to randomly generate star placement.
+
+		 */
 		var percentToPixel_x = function(_percent){
 			return $(".animation-wrapper").outerWidth()/100 * parseFloat(_percent)
 		}
@@ -67,65 +85,22 @@
 		var percentoScale = function(_percent){
 			return $("#body").width() * parseFloat(_percent) * 0.000694; 
 		}
+		function getRandomIntInclusive(min, max) {
+  			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
 
-		var tl = new TimelineMax();
-		tl
-			.to(p1, 0.5, {opacity: 1, ease:Sine.easeIn})
-			.to(p1, 3, {scale: percentoScale(100), x: "-=" + percentToPixel_x(380), y: "+=" + percentToPixel_y(55), ease:Expo.easeIn})
-
-			.to(p2, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p2,3, {scale: percentoScale(100), x: "+=" + percentToPixel_x(138.8), y: "-=" + percentToPixel_y(69.4), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p3, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p3,3, {scale: percentoScale(100), y: "+=" + percentToPixel_y(200), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p4, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p4,3, {scale: percentoScale(100), y: "-=" + percentToPixel_y(69.4), x:"-=" + percentToPixel_x(111), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p5, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p5,3, {scale: percentoScale(250), y: "+=" + percentToPixel_y(138.8), x:"+=" + percentToPixel_x(222.2),ease:Expo.easeIn}, "-=0.4")
-
-			.to(p6, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p6,3, {scale: percentoScale(100), y: "-=" + percentToPixel_y(211.1), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p7, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p7,3, {scale: percentoScale(75), ease:Expo.easeIn}, "-=0.4")
-			.to(p7, 1, {scale: percentoScale(150),rotation: "45deg", ease:Linear.easeNone}, "-=0.25")
-			.to(p7, 1, {scale: percentoScale(175), y: "+=" + percentToPixel_y(250), ease:Linear.easeNone}, "-=0.25")
-			.to(p7, 0.25, {x: "+=" + percentToPixel_x(100), scale: percentoScale(200), ease:Linear.easeNone})
-
-			.to(p8, 0.5, {opacity: 1, ease:Sine.easeIn})
-			.to(p8,3, {rotation: "-45deg", scale: percentoScale(100), x: "-=" + percentToPixel_x(110), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p9, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p9,3, {scale: percentoScale(150), y: "-=" + percentToPixel_y(150), x: "-=" + percentToPixel_x(122), ease:Expo.easeIn}, "-=0.4")
-
-			.to(p10, 0.5, {opacity: 1, ease:Sine.easeIn}, "-=1.5")
-			.to(p10,3, {scale: percentoScale(100), ease:Expo.easeIn}, "-=0.4")
-			.to(p10, 0.5, {rotation: "90deg", x: "+=" + percentToPixel_x(13.8), scale: percentoScale(125), ease:Linear.easeNone})
-			.to(p10, 1, {x: "+=" + percentToPixel_x(343.8), scale: percentoScale(1000), ease:Linear.easeNone}, "-=0.5");
-
-			//Text
-			
-
-			if($("#body").width() <= 720){
-				tl.to(welcome2, 0.5, {opacity: 1})
-				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(55), left: "-=" + percentToPixel_x(38.1)}, "+=2");
-				
-			}
-			else {
-				tl.to([welcome1, welcome2, welcome3], 0.5, {opacity: 1})
-				.to([welcome1, welcome2, welcome3], 0.5, {top: "-=" + percentToPixel_y(4), left: "-=" + percentToPixel_x(38.1)}, "+=2");
-				
-			}
-			tl
-			.to([welcome1, welcome3], 1, {opacity: 0}, "-=0.8")
-			.to(document.getElementById("logo"), 0.5, {opacity: 1, rotate: 360}, "-=0.5")
-
-			.to(background, 0.5, {backgroundColor: "white"}, "change")
-			.to(welcome2, 0.5, {color: "black"}, "change")
-
-			.to(body, 0.1, {overflowY: "visible"})
+		function rotateStars90() {
+			var tl = new TimelineMax();
+				tl.to(stars, 1, {x: star.css("y"), y: -(star.css("x"))}, "-=1");
+			return tl;
+		}
+		function rotateStarsNeg90() {
+			var tl = new TimelineMax();
+				tl.to(stars, 1, {x: -(star.css("y")), y: star.css("x")});
+			return tl;
+		}
+		var master = new TimelineMax();
+		master.add(animateStars());
 
 	</script>
 </body>

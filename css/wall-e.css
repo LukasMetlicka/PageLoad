@@ -1,0 +1,19 @@
+body {
+  margin: 0; }
+  body #animation-wrapper {
+    background-image: url("../img/wall-e/nebula-mono.png");
+    width: 100%;
+    margin: 0;
+    height: 500px;
+    overflow: hidden;
+    position: relative; }
+    body #animation-wrapper #wall-e {
+      position: relative;
+      width: 20%; }
+    body #animation-wrapper #eve {
+      width: 1700px; }
+    body #animation-wrapper #extinguisher {
+      position: relative;
+      margin-left: -480px; }
+
+/*# sourceMappingURL=wall-e.css.map */

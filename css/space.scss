@@ -28,6 +28,7 @@
 		height: 500px;
 		background-color: black;
 		overflow: hidden;
+		position: relative;
 		
 		#logo {
 			width: 10.4%;
@@ -60,9 +61,8 @@
 		.planet {
 			width: 10px;
 			position: relative;
-			top: 27.7%;
-			left: 50%;
-			opacity: 0;
+			z-index: 100;
+			display: inline;
 		}
 	}
 

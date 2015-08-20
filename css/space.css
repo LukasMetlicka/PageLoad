@@ -21,7 +21,8 @@
     padding: 0;
     height: 500px;
     background-color: black;
-    overflow: hidden; }
+    overflow: hidden;
+    position: relative; }
     #body .animation-wrapper #logo {
       width: 10.4%;
       position: absolute;
@@ -48,9 +49,8 @@
     #body .animation-wrapper .planet {
       width: 10px;
       position: relative;
-      top: 27.7%;
-      left: 50%;
-      opacity: 0; }
+      z-index: 100;
+      display: inline; }
 
 @media (max-width: 720px) {
   #welcome1, #welcome2, #welcome3 {

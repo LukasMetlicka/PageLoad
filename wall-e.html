@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wall-E</title>
+	<link rel="stylesheet" type="text/css" href="css/wall-e.css">
+</head>
+<body>
+
+
+	<div id="animation-wrapper">
+		
+		<img src="img/wall-e/wall-e.png" id="wall-e">
+		<img src="img/wall-e/extinguisher.gif"id="extinguisher">
+		<img src="img/wall-e/beam.png" id="eve">
+		
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.17.0/TimelineMax.min.js"></script>
+
+	<script>
+		var welcome1 = document.getElementById("welcome1");
+		var welcome2 = document.getElementById("welcome2");
+		var welcome3 = document.getElementById("welcome3");
+		var wrapper = document.getElementById("animation-wrapper");
+		var wallE = $("#wall-e");
+		var extinguisher = $("#extinguisher");
+
+		var centerY = $("#animation-wrapper").height()/2;
+		var wallEY = centerY - ($("#wall-e").height()/2);
+
+		var percentToPixel_x = function(_percent){
+			return $("#animation-wrapper").outerWidth()/100 * parseFloat(_percent)
+		}
+		var percentToPixel_y = function(_percent){
+			return $("#animation-wrapper").outerHeight()/100 * parseFloat(_percent)
+		}
+		var percentoScale = function(_percent){
+			return $("#body").width() * parseFloat(_percent) * 0.000694; 
+		}
+		function getRandomIntInclusive(min, max) {
+  			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+		var tl = new TimelineMax()
+		tl
+			.to(eve, 0.1, {display: "none"})
+			.fromTo(wallE, 5, {
+				left: -percentToPixel_x(75), 
+				top: wallEY, 
+				rotation: "60deg", 
+				ease: Power0.easeNone
+			},{
+				left: percentToPixel_x(150), 
+				rotation: "60deg", 
+				ease: Power0.easeNone
+			}, "sameTime")
+
+			
+			.fromTo(extinguisher, 5, {
+				top: wallEY - 121,
+				left: -percentToPixel_x(75) - 210,
+				ease: Power0.easeNone
+			},{
+				left: percentToPixel_x(150) - 210,
+				ease: Power0.easeNone
+			}, "sameTime")
+
+			.to([wallE, extinguisher], 0.1, {display: "none"}, "transition" )
+			.to(eve, 0.1, {display: "block"}, "transition")
+
+			.fromTo(eve, 3, {
+				marginLeft: -percentToPixel_x(200), 
+				top: centerY - ($("#eve").height()/2),
+				ease: Power0.easeNone
+			},{
+				marginLeft: percentToPixel_x(200),
+				ease: Power0.easeNone
+			})
+	</script>
+
+</body>
+</html>
